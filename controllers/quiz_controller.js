@@ -30,15 +30,15 @@ exports.show = function(req, res){
 };
 
 //get answer
-exports.answer = function(req,res){
+exports.answer = function(req, res){
 	//models.Quiz.find(req.params.quizId).then(function(quiz){
-		var resultado = "Incorrecto"
-		if (req.query.respuesta === quiz.respuesta){
+		var resultado = "Incorrecto";
+		if (req.query.respuesta === req.quiz.respuesta){
 		//res.render('quizes/answer', 
 			resultado = 'Correcto'
 			//{ quiz: quiz, respuesta: 'Correcto'});
 	} //else{
-		res.render('quizes/answer', { quiz: quiz, respuesta: resultado});
+		res.render('quizes/answer', { quiz: req.quiz, respuesta: resultado});
 
 	//}
 
