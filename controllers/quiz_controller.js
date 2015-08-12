@@ -55,11 +55,33 @@ exports.answer = function(req, res){
 
 
 exports.index = function(req, res){
-	models.Quiz.findAll().then(
-		function(quizes){
-		res.render('quizes/index.ejs', { quizes: quizes, errors: []});
+	//models.Quiz.findAll().then(
+		//function(quizes){
+		//res.render('quizes/index.ejs', { quizes: quizes, errors: []});
+	//}
+	//).catch(function(error) {next(error);})
+
+if (req.query.search){
+		var busqueda = req.query.search.replace(/\s+/g, '%');
+		models.Quiz.findAll({where: ["pregunta like ?", "%" + busqueda+ "%"]}).then(
+			function(quizes){
+				res.render('quizes/index',{quizes:quizes});
+
+			}
+			).catch(function(error){next(error);})
+
+	}else{
+		models.Quiz.findAll().then(
+			function(quizes){
+				res.render('quizes/index', {quizes:quizes, errors: []});
+			}
+			).catch(function(error) {next(error);});
 	}
-	).catch(function(error) {next(error);})
+};
+
+
+exports.search = function(req,res){
+    
 };
 
 
