@@ -13,7 +13,7 @@ router.get('/', function(req, res) {
 //autoload
 
 router.param('quizId', quizController.load);
-//router.param('search', quizController.load);///borrar
+router.param('search', quizController.load);///borrar
 router.param('commentId', commentController.load);
 
 
