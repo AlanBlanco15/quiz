@@ -43,16 +43,18 @@ Quiz.hasMany(Comment);
 exports.Quiz = Quiz;
 exports.Comment = Comment;
 
-sequelize.sync().success(function() {
-	Quiz.count().success(function(count){
+sequelize.sync().then(function() {
+	Quiz.count().then(function(count){
 		if (count === 0){
 			Quiz.create({pregunta: 'Capital de Italia',
-						 respuesta: 'Roma'
+						 respuesta: 'Roma',
+						 tema: 'Otro'
 		});
 	Quiz.create({ pregunta: 'Capital de Portugal',
-				    respuesta: 'Lisboa'
+				    respuesta: 'Lisboa',
+				    tema: 'Otro'
 		})
-	.success(function(){console.log('Base de datos inicializada')});
+	.then(function(){console.log('Base de datos inicializada')});
 		};
 	});
 });
